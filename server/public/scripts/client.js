@@ -2,8 +2,7 @@ $(document).ready(function () {
    console.log('jQuery sourced.');
     getTodo();
     addClickHandlers();
-    // $('#todoButton').on('click', handleSubmit);
-    $('#infoTodo').on('click', '.completed-task', updateTodoHandler);
+    $('#infoTodo').on('click', '.completed-task', todoPut);
 });
 
 function addClickHandlers() {
@@ -22,13 +21,12 @@ function addClickHandlers() {
 
 
 // PUT FUNCTION
-function todoPut(todoId) {
+function todoPut() {
+    const id = $(this).data('id')
     $.ajax({
         method: 'PUT',
-        url: `/todos/${todoId}`,
-        data: {
-            status: 'On todo List'
-        }
+        url: `/todos/${id}`,
+        // data: todoNewId
     })
     .then(function (response) {
         getTodo();
@@ -38,9 +36,9 @@ function todoPut(todoId) {
     })
 }
 
-function updateTodoHandler() {
-    todoPut($(this).data("id"))
-}
+// function updateTodoHandler() {
+//     todoPut($(this).data("id"));
+// }
 
 // GET function
 function getTodo() {
@@ -77,24 +75,19 @@ function saveTodo(newTodoPost) {
 function todoRender(todoArray) {
     $('#infoTodo').empty();
     for (let i = 0; i < todoArray.length; i++) {
-        let newTodo = todoArray[i];
-        if (newTodo.completed == 'No') {
-            $('#infoTodo').append(`
-                <tr>
-                    <td>${newTodo.notes}</td>
-                    <td>${newTodo.completed}</td>
-                    <td><button class="completed-task" data-id="${newTodo.id}">Completed</button></td>
-                    <td><button class="remove-task" data-id="${newTodo.id}">Remove Task</button></td>
-                </tr>
-            `);
+        let completed;
+        if (todoArray[i].completed) {
+            completed = 'No';
         } else {
+            completed = 'Yes';
+        }
             $('#infoTodo').append(`
                 <tr>
-                    <td>${newTodo.notes}</td>
-                    <td>${newTodo.completed}</td>
-                    <td><button class="remove-task" data-id="${newTodo.id}">Remove Task</button></td>
+                    <td>${todoArray[i].notes}</td>
+                    <td>${todoArray[i].completed}</td>
+                    <td><button class="completed-task" data-id="${todoArray[i].id}">Completed</button></td>
+                    <td><button class="remove-task" data-id="${todoArray[i].id}">Remove Task</button></td>
                 </tr>
-            `);
-        }
+        `);
     }
 }

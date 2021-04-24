@@ -40,7 +40,7 @@ todoRouter.post('/', (req, res) => {
 // PUT route
 todoRouter.put('/:id', (req, res) => {
     let id = req.params.id;
-    let sqlText = `UPDATE "todo" SET "completed" = 'Yes' WHERE "id=$1";`;
+    let sqlText = `UPDATE "todo" SET "completed" = 'Yes' WHERE "id"=$1;`;
     
     pool.query(sqlText, [id])
     .then(response => {

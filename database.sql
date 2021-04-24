@@ -1,7 +1,7 @@
 CREATE TABLE "todo" (
 	"id" SERIAL PRIMARY KEY,
 	"notes" VARCHAR (500) NOT NULL,
-	"completed" VARCHAR (3) NOT NULL
+	"completed" BOOLEAN DEFAULT 'No'
 );
 
 INSERT INTO "todo" ("notes", "completed")
