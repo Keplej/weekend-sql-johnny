@@ -40,10 +40,9 @@ function todoPut() {
 // DELETE function
 function todoDelete() {
     const id = $(this).data('id')
-
     $.ajax({
         method: 'DELETE',
-        url: `/todo/${id}`
+        url: `/todos/${id}`
     })
     .then(function (response) {
         getTodo();

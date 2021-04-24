@@ -59,7 +59,7 @@ todoRouter.delete('/:id', (req, res) => {
     console.log('Delete request id', reqID);
 
     let sqlText = 'DELETE FROM "todo" WHERE "id"=$1;';
-    pool.query(sqlText [reqID])
+    pool.query(sqlText, [reqID])
     .then((result) => {
         console.log('Task deleted', result);
         res.sendStatus(201);
