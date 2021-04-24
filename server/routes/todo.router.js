@@ -8,7 +8,7 @@ const pool = require('../modules/pool');
 
 // GET route
 todoRouter.get('/', (req, res) => {
-    let queryText = 'SELECT * FROM "todo" ORDER BY "notes";';
+    let queryText = 'SELECT * FROM "todo";';
     pool.query(queryText).then(result => {
         // Send back the results in an object
         res.send(result.rows);
@@ -20,7 +20,7 @@ todoRouter.get('/', (req, res) => {
 });
 
 // POST route
-todoRouter.post('/', (res, req) => {
+todoRouter.post('/', (req, res) => {
     let newTodoPost = req.body;
     console.log('Adding new to list', newTodoPost);
 
@@ -42,7 +42,7 @@ todoRouter.put('/:id', (req, res) => {
     let id = req.params.id;
     let sqlText = `UPDATE "todo" SET "completed" = 'Yes' WHERE "id=$1";`;
     
-    pool.query(queryText, [id])
+    pool.query(sqlText, [id])
     .then(response => {
         console.log('You updated a task!');
         res.sendStatus(201);

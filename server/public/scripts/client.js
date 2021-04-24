@@ -20,14 +20,6 @@ function addClickHandlers() {
     });
 }
 
-// Adding in sumbit button
-// function handleSubmit() {
-//     console.log('Submit button has been pressed');
-//     let newTodo = {};
-//     newTodo.notes = $('#notesIn').val();
-//     newTodo.completed = $('#completedIn').val();
-//     saveTodo(newTodo);
-// }
 
 // PUT FUNCTION
 function todoPut(todoId) {
