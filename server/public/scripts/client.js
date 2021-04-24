@@ -3,6 +3,7 @@ $(document).ready(function () {
     getTodo();
     addClickHandlers();
     $('#infoTodo').on('click', '.completed-task', todoPut);
+    $('#infoTodo').on('click', '.remove-task', todoDelete);
 });
 
 function addClickHandlers() {
@@ -26,7 +27,7 @@ function todoPut() {
     $.ajax({
         method: 'PUT',
         url: `/todos/${id}`,
-        // data: todoNewId
+        
     })
     .then(function (response) {
         getTodo();
@@ -36,9 +37,22 @@ function todoPut() {
     })
 }
 
-// function updateTodoHandler() {
-//     todoPut($(this).data("id"));
-// }
+// DELETE function
+function todoDelete() {
+    const id = $(this).data('id')
+
+    $.ajax({
+        method: 'DELETE',
+        url: `/todo/${id}`
+    })
+    .then(function (response) {
+        getTodo();
+    })
+    .catch(function (error) {
+        alert('Error deleting data!', error);
+    })
+}
+
 
 // GET function
 function getTodo() {
