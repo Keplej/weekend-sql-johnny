@@ -1,3 +1,4 @@
+// const { response } = require('express');
 const express = require('express');
 const todoRouter = express.Router();
 
@@ -20,11 +21,13 @@ todoRouter.get('/', (req, res) => {
 
 // POST route
 todoRouter.post('/', (res, req) => {
-    let newTodo = req.body;
-    console.log('Adding new to list', newTodo);
-    let queryText = `INSERT INTO "todo" ("notes", "completed") VALUES ($1, $2);`;
+    let newTodoPost = req.body;
+    console.log('Adding new to list', newTodoPost);
 
-    pool.query(queryText, [newTodo.notes, newTodo.completed])
+    let queryText = `INSERT INTO "todo" ("notes", "completed") 
+                    VALUES ($1, $2);`;
+
+    pool.query(queryText, [newTodoPost.notes, newTodoPost.completed])
     .then(result => {
         res.sendStatus(201);
     })
@@ -35,6 +38,20 @@ todoRouter.post('/', (res, req) => {
 });
 
 // PUT route
+todoRouter.put('/:id', (req, res) => {
+    let id = req.params.id;
+    let sqlText = `UPDATE "todo" SET "completed" = 'Yes' WHERE "id=$1";`;
+    
+    pool.query(queryText, [id])
+    .then(response => {
+        console.log('You updated a task!');
+        res.sendStatus(201);
+    })
+    .catch(error => {
+        console.log('Error in updating task', error);
+        res.sendStatus(500);
+    })
+})
 
 // DELETE route
 
