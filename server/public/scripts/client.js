@@ -1,3 +1,5 @@
+// const todoRouter = require("../../routes/todo.router");
+
 $(document).ready(function () {
    console.log('jQuery sourced.');
     getTodo();
@@ -89,18 +91,24 @@ function todoRender(todoArray) {
     $('#infoTodo').empty();
     for (let i = 0; i < todoArray.length; i++) {
         let completed;
-        if (todoArray[i].completed) {
-            completed = 'No';
-        } else {
-            completed = 'Yes';
-        }
+        if (todoArray[i].completed == 'Yes') {
             $('#infoTodo').append(`
-                <tr>
+                <tr class='completed'>
                     <td>${todoArray[i].notes}</td>
                     <td>${todoArray[i].completed}</td>
                     <td><button class="completed-task" data-id="${todoArray[i].id}">Completed</button></td>
                     <td><button class="remove-task" data-id="${todoArray[i].id}">Remove Task</button></td>
                 </tr>
         `);
+        } else if (todoArray[i].completed == 'No') {
+            $('#infoTodo').append(`
+                <tr class='incompleted'>
+                    <td>${todoArray[i].notes}</td>
+                    <td>${todoArray[i].completed}</td>
+                    <td><button class="completed-task" data-id="${todoArray[i].id}">Completed</button></td>
+                    <td><button class="remove-task" data-id="${todoArray[i].id}">Remove Task</button></td>
+                </tr>
+        `);
+        }
     }
 }
