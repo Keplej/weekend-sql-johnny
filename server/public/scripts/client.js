@@ -86,7 +86,7 @@ function saveTodo(newTodoPost) {
     });
 }
 
-
+// RENDER
 function todoRender(todoArray) {
     $('#infoTodo').empty();
     for (let i = 0; i < todoArray.length; i++) {

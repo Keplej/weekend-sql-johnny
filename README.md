@@ -1,9 +1,10 @@
-# Project Name
-
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+# Johnny's Weekend SQL Project
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+This project was working with SQL and connecting it up with the database.
+
+THis app allows us to create a todo list and update it with either showing up as complete or not complete.
+The User can add and delete tasks if they wish to.
 
 Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
