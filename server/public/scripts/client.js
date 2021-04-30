@@ -90,8 +90,8 @@ function saveTodo(newTodoPost) {
 function todoRender(todoArray) {
     $('#infoTodo').empty();
     for (let i = 0; i < todoArray.length; i++) {
-        let completed;
-        if (todoArray[i].completed == 'Yes') {
+        // let completed;
+        if (todoArray[i].completed == true) {
             $('#infoTodo').append(`
                 <tr class='completed'>
                     <td>${todoArray[i].notes}</td>
@@ -100,7 +100,7 @@ function todoRender(todoArray) {
                     <td><button class="remove-task" data-id="${todoArray[i].id}">Remove Task</button></td>
                 </tr>
         `);
-        } else if (todoArray[i].completed == 'No') {
+        } else if (todoArray[i].completed == false) {
             $('#infoTodo').append(`
                 <tr class='incompleted'>
                     <td>${todoArray[i].notes}</td>
